@@ -30,8 +30,7 @@
         <div class="card-body login-card-body">
             <p class="login-box-msg">Sign in to start your session</p>
 
-            <form method="POST" action="{{ route('login') }}">
-                @csrf
+            {{Form::open(['route'=>'login', 'method'=> 'POST'])}}
                <div class="form-group row mb-3">
                    <div class="input-group ">
                        <input type="text" name="email" class="form-control" placeholder="Email">
@@ -66,7 +65,7 @@
                     </div>
                     <!-- /.col -->
                 </div>
-            </form>
+            {{Form::close()}}
             <!-- /.social-auth-links -->
 
             {{--<p class="mb-1">--}}

@@ -11,7 +11,7 @@ class LoginController extends Controller
 {
 
     public $decayMinutes = 2;
-    public $maxAttempts = 5;
+    public $maxAttempts = 3;
 
 
 
