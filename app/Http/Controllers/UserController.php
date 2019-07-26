@@ -39,6 +39,7 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
+
         $user = User::create([
             'first_name' => $request['first_name'],
             'last_name' => $request['last_name'],
@@ -95,15 +96,15 @@ class UserController extends Controller
         ]));
 
         $roles = $request->role_id;
-        if($user->roles->first()->id !== $roles){
-            $user->roles()->sync($roles);
-        }
 
         if($user->isClean() && $user->roles->first()->id == $roles){
             return redirect()->back()->with('error', 'You need to specify a different value to update!!');
         }
 
         $user->save();
+        if($user->roles->first()->id !== $roles){
+            $user->roles()->sync($roles);
+        }
         return redirect('/users')->with('info', 'User updated successfully.');
 
     }

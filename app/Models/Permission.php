@@ -4,23 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Role extends Model
+class Permission extends Model
 {
     protected $guarded = [];
 
-    public function users()
-    {
-        return $this->belongsToMany('App\Models\User');
+    public function roles(){
+        return $this->belongsToMany('App\Models\Role');
     }
-
-    public function permissions()
-    {
-        return $this->belongsToMany('App\Models\Permission');
-    }
-
 
     /**
-     * Get the roles name field capital letter.
+     * Get the permission name field capital letter.
      * @param  string  $value
      * @return void
      */
@@ -31,7 +24,17 @@ class Role extends Model
     }
 
     /**
-     * Set the roles name small latter.
+     * Get the permission for field capital letter.
+     * @param  string  $value
+     * @return void
+     */
+    public function getForAttribute($value)
+    {
+        return ucfirst($value);
+    }
+
+    /**
+     * Set the permission name small latter.
      *
      * @param  string  $value
      * @return void
@@ -40,5 +43,4 @@ class Role extends Model
     {
         $this->attributes['name'] = strtolower($value);
     }
-
 }

@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
         $role_id = Role::first()->pluck('id');
         $admin->roles()->attach($role_id);
 
+        //for editor & author
         factory('App\Models\User', 100)->create()->each(
             function ($user){
                 $roles = Role::where('id', 2)->orWhere('id', 3)->get()->random(mt_rand(1,2))->pluck('id');

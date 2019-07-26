@@ -51,7 +51,6 @@
                         </div>
                         <div class="form-group">
                             <label>Select</label>
-
                             <select class="form-control" name="role_id">
 
                                 @foreach($roles as $id=>$role)
@@ -63,7 +62,28 @@
                                     </option>
                                 @endforeach
                             </select>
-                            <span class="text-danger ">{{$errors->has('role') ? $errors->first('role') : ''}}</span>
+                            <span class="text-danger ">{{$errors->has('role_id') ? $errors->first('role_id') : ''}}</span>
+                        </div>
+                        <div class="for-inline">
+                            <label class="control-label">Roles </label>
+                            <div class="form-group">
+                                @foreach($roles as $id=>$role)
+                                    <div class="form-check form-check-inline mr-5">
+                                        <input
+                                        class="form-check-input"
+                                        name="role_id[]"
+                                        value="{{$id}}"
+                                        type="checkbox"
+                                        id="{{$id}}"
+                                        @foreach($user->roles as $val)
+                                        {{$val->id == $id ? 'checked': ''}}
+                                        @endforeach
+                                        >
+                                        <label class="form-check-label" for="{{$id}}">{{$role}}</label>
+                                    </div>
+                                @endforeach
+                                <p class="text-danger">{{$errors->has('role_id') ? $errors->first('role_id') : ''}}</p>
+                            </div>
                         </div>
 
                         <div class="card-footer">

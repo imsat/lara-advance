@@ -41,4 +41,24 @@ class User extends Authenticatable
     public function roles(){
         return $this->belongsToMany('App\Models\Role');
     }
+
+    public function hasAccess(array $permissions) : bool
+    {
+        foreach($this->roles() as $role){
+            if($role->$this->hasAccess($permissions)){
+                return true;
+            }
+            return false;
+        }
+    }
+
+    /**
+     * Get the user's full name.
+     *
+     * @return string
+     */
+    public function getFullNameAttribute()
+    {
+        return "{$this->first_name} {$this->last_name}";
+    }
 }

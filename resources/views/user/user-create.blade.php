@@ -58,14 +58,24 @@
                                 <label>Confirm Password</label>
                                 <input type="password" name="password_confirmation" class="form-control" placeholder="Confirm Password">
                             </div>
+                            {{--<div class="form-group">--}}
+                                {{--<select class="form-control" name="role_id">--}}
+                                    {{--@foreach($roles as $id=>$role)--}}
+                                    {{--<option value="{{$id}}">{{$role}}</option>--}}
+                                    {{--@endforeach--}}
+                                {{--</select>--}}
+                            {{--</div>--}}
                             <div class="form-group">
-                                <label>Select</label>
-                                <select class="form-control" name="role_id">
+                                <label class="control-label">Roles </label>
+                                <div class="form-group">
                                     @foreach($roles as $id=>$role)
-                                    <option value="{{$id}}">{{$role}}</option>
+                                        <div class="form-check form-check-inline mr-5">
+                                            <input class="form-check-input" name="role_id[]"  value="{{$id}}" type="checkbox" id="{{$id}}">
+                                            <label class="form-check-label" for="{{$id}}">{{$role}}</label>
+                                        </div>
                                     @endforeach
-                                </select>
-                                <span class="text-danger ">{{$errors->has('role') ? $errors->first('role') : ''}}</span>
+                                    <p class="text-danger">{{$errors->has('role_id') ? $errors->first('role_id') : ''}}</p>
+                                </div>
                             </div>
 
                             <div class="card-footer">

@@ -28,7 +28,30 @@ class UserRequest extends FormRequest
             'last_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
-            'role_id' => ['required']
+            'role_id' => ['required'],
+        ];
+
+    }
+
+//    /**
+//     * Get the error messages for the defined validation rules.
+//     *
+//     * @return array
+//     */
+//    public function messages()
+//    {
+//        return [
+//            'role_id.required' => 'The roles field is required.'
+//        ];
+//    }
+
+    public function attributes()
+    {
+        return [
+            'email' => 'email address',
+            'role_id' => 'roles',
+
         ];
     }
+
 }
