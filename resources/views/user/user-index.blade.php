@@ -41,6 +41,7 @@
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Roles</th>
+                                <th>Created</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -58,6 +59,7 @@
                                             {{$j++ ? ', ': ''}} {{$role->name}}
                                         @endforeach
                                     </td>
+                                    <td>{{$user->created_at}}</td>
                                     <td>
                                         <a href="{{route('users.edit', $user->id)}}" class="btn btn-sm btn-success"><i class="fa fa-edit"></i></a>
                                         {{Form::open(['route'=>['users.destroy', $user->id], 'method'=>'DELETE', 'class' => 'd-inline'])}}
@@ -72,6 +74,7 @@
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Roles</th>
+                                <th>Created</th>
                                 <th>Action</th>
                             </tr>
                             </tfoot>

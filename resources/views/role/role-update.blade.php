@@ -14,7 +14,7 @@
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
                         <li class="breadcrumb-item"><a href="{{route('roles.index')}}">Roles</a></li>
-                        <li class="breadcrumb-item active">Update New Role</li>
+                        <li class="breadcrumb-item active">Update Role</li>
                     </ol>
                 </div>
             </div>

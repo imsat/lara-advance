@@ -70,7 +70,7 @@
                                 @foreach($roles as $id=>$role)
                                     <div class="form-check form-check-inline mr-5">
                                         <input
-                                        class="form-check-input"
+                                        class="form-check-input text-danger"
                                         name="role_id[]"
                                         value="{{$id}}"
                                         type="checkbox"

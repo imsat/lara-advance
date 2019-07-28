@@ -9,7 +9,7 @@ use Faker\Generator as Faker;
 use Illuminate\Support\St;
 
 $factory->define(Post::class, function (Faker $faker) {
-    $name = $faker->word(2);
+    $name = $faker->unique()->sentence(5);
     return [
         'title' => $name,
         'slug' => Str::slug($name),
