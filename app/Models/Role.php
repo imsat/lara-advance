@@ -8,27 +8,41 @@ class Role extends Model
 {
     protected $guarded = [];
 
+    /**
+     * Many-To-Many Relationship Method for accessing the Role->users
+     */
     public function users()
     {
         return $this->belongsToMany('App\Models\User');
     }
 
+    /**
+     * Many-To-Many Relationship Method for accessing the Role->permissions
+     */
     public function permissions()
     {
         return $this->belongsToMany('App\Models\Permission');
     }
 
-
     /**
-     * Get the roles name field capital letter.
-     * @param  string  $value
-     * @return void
+     * Assign permission to certain roles
      */
-    public function getNameAttribute($value)
+    public function givePermissionTo(Permission $permission)
     {
-//        return ucwords($value);
-        return implode('-', array_map('ucfirst', explode('-', $value)));
+        return $this->permissions()->save($permission);
     }
+
+
+//    /**
+//     * Get the roles name field capital letter.
+//     * @param  string  $value
+//     * @return void
+//     */
+//    public function getNameAttribute($value)
+//    {
+////        return ucwords($value);
+//        return implode('-', array_map('ucfirst', explode('-', $value)));
+//    }
 
     /**
      * Set the roles name small latter.

@@ -54,9 +54,25 @@
                 </li>
                 <li class="nav-item">
                     <a href="{{route('posts.index')}}" class="nav-link ">
-                        <i class="nav-icon fas fa-code"></i>
+                        <i class="nav-icon fas fa-tablet"></i>
                         <p>
                             Post
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route('posts.publish')}}" class="nav-link ">
+                        <i class="nav-icon fas fa-table"></i>
+                        <p>
+                            Published Post
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route('posts.unpublish')}}" class="nav-link ">
+                        <i class="nav-icon fas fa-tablet-alt"></i>
+                        <p>
+                            Unpublished Post
                         </p>
                     </a>
                 </li>

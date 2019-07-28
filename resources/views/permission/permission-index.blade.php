@@ -49,7 +49,7 @@
                             @foreach($permissions as $permission)
                                 <tr>
                                     <td>{{$i++}}</td>
-                                    <td>{{$permission->name}}</td>
+                                    <td class="text-capitalize">{{$permission->name}}</td>
                                     <td>{{$permission->for}}</td>
                                     <td>{{$permission->description}}</td>
                                     <td>

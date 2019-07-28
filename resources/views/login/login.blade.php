@@ -33,7 +33,7 @@
             {{Form::open(['route'=>'login', 'method'=> 'POST'])}}
                <div class="form-group row mb-3">
                    <div class="input-group ">
-                       <input type="text" name="email" class="form-control" placeholder="Email">
+                       <input type="text" value="{{old('email')}}" name="email" class="form-control" placeholder="Email">
                        <div class="input-group-append input-group-text ">
                            <span class="fas fa-envelope"></span>
                        </div>

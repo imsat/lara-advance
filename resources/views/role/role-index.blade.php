@@ -48,7 +48,7 @@
                             @foreach($roles as $role)
                                 <tr>
                                     <td>{{$i++}}</td>
-                                    <td>{{$role->name}}</td>
+                                    <td class="text-capitalize">{{$role->name}}</td>
                                     <td>{{$role->description}}</td>
                                     <td>
                                         <a href="{{route('roles.show', $role->id)}}" class="btn btn-sm btn-info" title="View"><i class="fa fa-search-plus"></i></a>

@@ -9,9 +9,8 @@ use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
-
-    public $decayMinutes = 2;
     public $maxAttempts = 3;
+    public $decayMinutes = 2;
 
 
 

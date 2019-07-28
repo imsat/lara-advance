@@ -1,6 +1,6 @@
 @extends('master')
 @section('title')
-    Post
+    Published Post
 @endsection
 @section('content')
     <!-- Content Header (Page header) -->
@@ -8,12 +8,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Post</h1>
+                    <h1>Published Post</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
-                        <li class="breadcrumb-item active">Posts</li>
+                        <li class="breadcrumb-item active">Published Posts</li>
                     </ol>
                 </div>
             </div>
@@ -27,11 +27,8 @@
                 <!-- /.card -->
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title float-left">All Posts
+                        <h3 class="card-title float-left">All Published Posts
                         </h3>
-{{--                        @if(Auth::user()->hasRole('admin'))--}}
-                        <a href="{{route('posts.create')}}" class="btn btn-primary float-right btn-sm"> <i class="fa fa-plus"></i> Add New</a>
-                            {{--@endif--}}
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
@@ -42,7 +39,7 @@
                                 <th style="width: 40%">Title</th>
                                 <th style="width: 10%">Category</th>
                                 <th style="width: 10%">Status</th>
-                                <th style="width: 15%">Post By</th>
+                                <th style="width: 15%">Published</th>
                                 <th style="width: 20%">Action</th>
                             </tr>
                             </thead>
@@ -54,9 +51,9 @@
                                     <td>{{$post->title}}</td>
                                     <td>{{$post->category->name}}</td>
                                     <td>{{$post->status == 1 ? 'Published' : 'Unpublished'}}</td>
-                                    <td>{{$post->user->fullName}}</td>
+                                    <td>{{$post->published_at}}</td>
                                     <td>
-                                        <a href="{{route('posts.show', $post->id)}}" class="btn btn-sm btn-info" title="View"><i class="fa fa-search-plus"></i></a>
+                                        <a href="#" class="btn btn-sm btn-info" title="View"><i class="fa fa-search-plus"></i></a>
                                         <a href="#" class="btn btn-sm btn-success" title="Edit"><i class="fa fa-edit"></i></a>
                                         <a href="#" class="btn btn-sm btn-danger" title="Delete"><i class="fa fa-trash"></i></a>
                                         {{--{{Form::open(['route' => ['posts.destroy', $post->id], 'method'=>'DELETE', 'class' => 'd-inline'])}}--}}
@@ -66,16 +63,16 @@
                                 </tr>
                             @endforeach
                             </tbody>
-                        {{--</tfoot>--}}
-                            {{--<tr>--}}
-                                {{--<th>No</th>--}}
-                                {{--<th>Title</th>--}}
-                                {{--<th>Category</th>--}}
-                                {{--<th>Status</th>--}}
-                                {{--<th>Post By</th>--}}
-                                {{--<th style="max-width: 20%">Action</th>--}}
-                            {{--</tr>--}}
-                            {{--</tfoot>--}}
+                            </tfoot>
+                            <tr>
+                            <th>No</th>
+                            <th>Title</th>
+                            <th>Category</th>
+                            <th>Status</th>
+                                <th style="width: 15%">Published</th>
+                            <th style="max-width: 20%">Action</th>
+                            </tr>
+                            </tfoot>
                         </table>
                     </div>
                     <!-- /.card-body -->

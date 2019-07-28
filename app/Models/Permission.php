@@ -12,16 +12,16 @@ class Permission extends Model
         return $this->belongsToMany('App\Models\Role');
     }
 
-    /**
-     * Get the permission name field capital letter.
-     * @param  string  $value
-     * @return void
-     */
-    public function getNameAttribute($value)
-    {
-//        return ucwords($value);
-        return implode('-', array_map('ucfirst', explode('-', $value)));
-    }
+//    /**
+//     * Get the permission name field capital letter.
+//     * @param  string  $value
+//     * @return void
+//     */
+//    public function getNameAttribute($value)
+//    {
+////        return ucwords($value);
+//        return implode('-', array_map('ucfirst', explode('-', $value)));
+//    }
 
     /**
      * Get the permission for field capital letter.

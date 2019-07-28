@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
-use App\Models\User;
 use Illuminate\Http\Request;
-use Auth;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class PostController extends Controller
 {
@@ -17,9 +18,6 @@ class PostController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-//        $this->middleware('acl:post-delete');
-//        $this->middleware('acl:post-create|post-publish|post-update')->except(['delete']);
-//        $this->middleware('checkRole:admin');
     }
 
     /**
@@ -29,9 +27,28 @@ class PostController extends Controller
      */
     public function index(Request $request)
     {
-        $request->user()->authorizeRoles(['admin', 'editor']);
         $posts = Post::with('category', 'user')->latest()->get();
         return view('post.post-index', compact('posts'));
+    }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function publishPost()
+    {
+        $posts = Post::with('category', 'user')->latest()->published()->get();
+        return view('post.post-publish', compact('posts'));
+    }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function unpublishPost()
+    {
+        $posts = Post::with('category', 'user')->latest()->unpublished()->get();
+        return view('post.post-unpublished', compact('posts'));
     }
 
     /**
@@ -52,7 +69,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+//        $request->user()->can('update-post');
     }
 
     /**
@@ -63,7 +80,27 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+//        if(Gate::denies('show-post', $post)){
+//            abort(403, 'Sorry, not sorry.');
+//        }
+
+
+
+//        Gate::allaws()
+//        $this->authorize('show-post', $post);
+
+//        if(Gate::allows('show-post', $post)){
+//            return view('post.post-show', compact('post'));
+//        }
+//        if(Auth::user()->can('update-post', $post)){
+//            return 'You can update this.';
+//        }
+//        if(Gate::denies('update', $post)){
+//            abort(403, 'Nope');
+//        }
+
+        return view('post.post-show', compact('post'));
+
     }
 
     /**

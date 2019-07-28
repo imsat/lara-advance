@@ -16,6 +16,8 @@ $factory->define(Post::class, function (Faker $faker) {
         'category_id' => Category::all()->random()->id,
         'body' => $faker->sentence(2),
         'status' => mt_rand(0, 1),
-        'user_id' => User::all()->random()->id
+        'user_id' => User::all()->random()->id,
+//        'published_at' => $faker->dateTimeBetween($startDate = '-5 years', $endDate = 'now')
+//        'published_at' => $faker->dateTimeBetween($startDate = 'now', $endDate = '+2 years' )
     ];
 });
