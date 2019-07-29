@@ -58,11 +58,12 @@ class DatabaseSeeder extends Seeder
         $role_author->permissions()->attach($data2);
 
 
-//        factory('App\Models\User', 100)->create()->each(
-//            function ($user){
-//                $roles = Role::where('id', 2)->orWhere('id', 3)->get()->random(mt_rand(1,2))->pluck('id');
-//                $user->roles()->attach($roles);
-//            });
+        factory('App\Models\User', 50)->create()->each(
+            function ($user){
+                factory('App\Models\Post', 2)->create(['user_id' => $user->id]);
+                $roles = Role::where('id', 2)->orWhere('id', 3)->get()->random(mt_rand(1,2))->pluck('id');
+                $user->roles()->attach($roles);
+            });
 
 
     }

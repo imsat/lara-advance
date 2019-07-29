@@ -46,9 +46,9 @@
                             <span class="text-danger ">{{$errors->has('description') ? $errors->first('description') : ''}}</span>
                         </div>
                         <div class="form-group row">
-                            <div class="col-4">
+                            <div class="col-3">
                                 <div class="form-group ">
-                                    <label class="control-label">User Permission </label>
+                                    <label class="control-label">Users Permission </label>
                                     @foreach($permissions as $permission)
                                         @if($permission->for === 'User')
                                             <div class="form-check">
@@ -68,7 +68,7 @@
                                     @endforeach
                                 </div>
                             </div>
-                            <div class="col-4">
+                            <div class="col-3">
                                 <div class="form-group">
                                     <label class="control-label">Posts Permission </label>
                                     @foreach($permissions as $permission)
@@ -90,7 +90,29 @@
                                     @endforeach
                                 </div>
                             </div>
-                            <div class="col-4">
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <label class="control-label">Roles Permission </label>
+                                    @foreach($permissions as $permission)
+                                        @if($permission->for === 'Role')
+                                            <div class="form-check">
+                                                <input
+                                                class="form-check-input"
+                                                name="permission_id[]"
+                                                value="{{$permission->id}}"
+                                                type="checkbox"
+                                                id="{{$permission->id}}"
+                                                @foreach($role->permissions as $val)
+                                                {{$val->id == $permission->id ? 'checked': ''}}
+                                                @endforeach
+                                                >
+                                                <label class="form-check-label" for="{{$permission->id}}">{{$permission->name}}</label>
+                                            </div>
+                                        @endif
+                                    @endforeach
+                                </div>
+                            </div>
+                            <div class="col-3">
                                 <div class="form-group">
                                     <label class="control-label">Other Permission </label>
                                     @foreach($permissions as $permission)
