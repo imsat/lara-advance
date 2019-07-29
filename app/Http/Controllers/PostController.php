@@ -27,6 +27,7 @@ class PostController extends Controller
      */
     public function index(Request $request)
     {
+        abort_unless(Gate::allows('post-access'), 403);
         $posts = Post::with('category', 'user')->latest()->get();
         return view('post.post-index', compact('posts'));
     }
@@ -37,6 +38,7 @@ class PostController extends Controller
      */
     public function publishPost()
     {
+        abort_unless(Gate::allows('post-publish'), 403);
         $posts = Post::with('category', 'user')->latest()->published()->get();
         return view('post.post-publish', compact('posts'));
     }
@@ -47,6 +49,7 @@ class PostController extends Controller
      */
     public function unpublishPost()
     {
+        abort_unless(Gate::allows('post-publish'), 403);
         $posts = Post::with('category', 'user')->latest()->unpublished()->get();
         return view('post.post-unpublished', compact('posts'));
     }
@@ -58,7 +61,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+//        abort_unless(Gate::allows('post-create'), 403);
     }
 
     /**
@@ -69,6 +72,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        abort_unless(Gate::allows('post-create'), 403);
 //        $request->user()->can('update-post');
     }
 
@@ -80,6 +84,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
+        abort_unless(Gate::allows('post-show'), 403);
 //        if(Gate::denies('show-post', $post)){
 //            abort(403, 'Sorry, not sorry.');
 //        }
@@ -111,7 +116,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        abort_unless(Gate::allows('post-update'), 403);
     }
 
     /**
@@ -123,7 +128,7 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+//        abort_unless(Gate::allows('post-update'), 403);
     }
 
     /**
@@ -134,6 +139,6 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        abort_unless(Gate::allows('post-delete'), 403);
     }
 }

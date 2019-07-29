@@ -52,9 +52,22 @@ class User extends Authenticatable
      */
     public function assignRole($role)
     {
-       return  $this->roles()->save(
+       return  $this->roles()->syncWithoutDetaching(
             Role::whereName($role)->firstOrFail()
         );
+    }
+    /**
+     * Assign multiple Roles to users
+     */
+
+    public function assignRoles($roles)
+    {
+        foreach ($roles as $role){
+            $this->roles()->syncWithoutDetaching(
+                Role::whereName($role)->firstOrFail()
+            );
+       }
+       return $this;
     }
 
     /**

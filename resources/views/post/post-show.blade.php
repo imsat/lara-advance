@@ -30,7 +30,7 @@
                     <div class="card-header">
                         <h3 class="card-title float-left">View Posts
                         </h3>
-                        @can('post-create')
+                        @can('post-create', $post)
                         <a href="#" class="btn mx-2 btn-secondary btn-sm float-right">Create Post</a>
                         @endcan
                         @can('post-show')

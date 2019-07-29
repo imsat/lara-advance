@@ -6,6 +6,7 @@ use App\Http\Requests\UserRequest;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class UserController extends Controller
 {
@@ -26,6 +27,14 @@ class UserController extends Controller
      */
     public function index()
     {
+        abort_unless(Gate::allows('user-access'), 403);
+//        abort_unless(Gate::allows('user-access'), 403, 'Sorry, not sorry.');
+//        if(! Gate::allows('user-access')){
+//            abort(403, 'Sorry, not sorry.');
+//        }
+//          if(Gate::denies('user-access')){
+//            abort(403, 'Sorry, not sorry.');
+//        }
         $users = User::with('roles')->latest()->get();
         return view('user.user-index', compact('users'));
     }
@@ -37,6 +46,7 @@ class UserController extends Controller
      */
     public function create()
     {
+        abort_unless(Gate::allows('user-create'), 403);
         $roles = Role::orderBy('name')->pluck('name', 'id');
         return view('user.user-create', compact('roles'));
     }
@@ -49,7 +59,7 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
-
+        abort_unless(Gate::allows('user-create'), 403);
         $user = User::create([
             'first_name' => $request['first_name'],
             'last_name' => $request['last_name'],
@@ -68,7 +78,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+//        abort_unless(Gate::allows('user-show'), 403);
     }
 
     /**
@@ -79,6 +89,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
+        abort_unless(Gate::allows('user-update'), 403);
         $roles = Role::orderBy('name')->pluck('name', 'id');
         return view('user.user-update', compact('roles','user'));
     }
@@ -92,9 +103,10 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
+        abort_unless(Gate::allows('user-update'), 403);
         $this->validate($request, [
             'first_name' => ['required', 'string', 'max:255'],
-            'last_name' => ['required', 'string', 'max:255'],
+//            'last_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255'],
             'role_id' => ['required']
         ]);
@@ -127,6 +139,7 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
+        abort_unless(Gate::allows('user-delete'), 403);
         $user->delete();
         return redirect('/users')->with('success', 'User Deleted successfully.');
     }

@@ -10,12 +10,23 @@ use Illuminate\Support\Str;
 class RoleController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
+        abort_unless(Gate::allows('role-access'), 403);
         $roles = Role::all();
         return view('role.role-index', compact('roles'));
     }
@@ -27,6 +38,7 @@ class RoleController extends Controller
      */
     public function create()
     {
+        abort_unless(Gate::allows('role-create'), 403);
         $permissions = Permission::latest()->get();
         return view('role.role-create', compact('permissions'));
     }
@@ -39,6 +51,7 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
+        abort_unless(Gate::allows('role-create'), 403);
         $this->validate($request, [
            'name' => 'required|string'
         ]);
@@ -60,6 +73,7 @@ class RoleController extends Controller
      */
     public function show(Role $role)
     {
+        abort_unless(Gate::allows('role-show'), 403);
         return view('role.role-show');
     }
 
@@ -71,6 +85,7 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
+        abort_unless(Gate::allows('role-update'), 403);
         $permissions = Permission::latest()->get();
         return view('role.role-update', compact('role', 'permissions'));
     }
@@ -84,6 +99,7 @@ class RoleController extends Controller
      */
     public function update(Request $request, Role $role)
     {
+        abort_unless(Gate::allows('role-update'), 403);
         $this->validate($request, [
             'name' => 'required|string'
         ]);
@@ -111,6 +127,7 @@ class RoleController extends Controller
      */
     public function destroy(Role $role)
     {
+        abort_unless(Gate::allows('role-delete'), 403);
         $role->delete();
         return redirect('/roles')->with('success', 'Role deleted successfully');
     }

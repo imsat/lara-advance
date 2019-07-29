@@ -74,7 +74,7 @@
             <hr>
             <p class="mb-1">
                 <span>
-                    <b>Email:</b> admin@admin.com
+                    <b>Email:</b> admin@example.com
                 </span>
             </p>
             <p class="mb-1">

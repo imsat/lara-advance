@@ -61,10 +61,14 @@
                                     </td>
                                     <td>{{$user->created_at}}</td>
                                     <td>
+                                        @can('user-update')
                                         <a href="{{route('users.edit', $user->id)}}" class="btn btn-sm btn-success"><i class="fa fa-edit"></i></a>
+                                        @endcan
+                                        @can('user-delete')
                                         {{Form::open(['route'=>['users.destroy', $user->id], 'method'=>'DELETE', 'class' => 'd-inline'])}}
                                         <button type="submit" onclick="return confirm('Are you sure to delete!!!')" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
                                         {{Form::close()}}
+                                        @endcan
                                     </td>
                                 </tr>
                             @endforeach

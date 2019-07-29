@@ -48,7 +48,7 @@
                         <div class="form-group row">
                             <div class="col-4">
                             <div class="form-group ">
-                                <label class="control-label">User Permission </label>
+                                <label class="control-label">Users Permission </label>
                             @foreach($permissions as $permission)
                                     @if($permission->for === 'User')
                                     <div class="form-check">
@@ -74,7 +74,7 @@
                             </div>
                             <div class="col-4">
                             <div class="form-group">
-                                <label class="control-label">Other Permission </label>
+                                <label class="control-label">Others Permission </label>
                                 @foreach($permissions as $permission)
                                     @if($permission->for === 'Other')
                                         <div class="form-check">

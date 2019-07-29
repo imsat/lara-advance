@@ -52,6 +52,7 @@
                         </li>
                     </ul>
                 </li>
+                @can('post-access')
                 <li class="nav-item">
                     <a href="{{route('posts.index')}}" class="nav-link ">
                         <i class="nav-icon fas fa-tablet"></i>
@@ -60,6 +61,8 @@
                         </p>
                     </a>
                 </li>
+                @endcan
+                @can('post-publish')
                 <li class="nav-item">
                     <a href="{{route('posts.publish')}}" class="nav-link ">
                         <i class="nav-icon fas fa-table"></i>
@@ -68,6 +71,8 @@
                         </p>
                     </a>
                 </li>
+                @endcan
+                @can('post-publish')
                 <li class="nav-item">
                     <a href="{{route('posts.unpublish')}}" class="nav-link ">
                         <i class="nav-icon fas fa-tablet-alt"></i>
@@ -76,6 +81,7 @@
                         </p>
                     </a>
                 </li>
+                @endcan
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

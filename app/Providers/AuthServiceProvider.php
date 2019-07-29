@@ -42,6 +42,8 @@ class AuthServiceProvider extends ServiceProvider
 //            return $user->owns($post);
 //        });
 
+
+        ///Problem generate when to migrate
         foreach ($this->getPermissions() as $permission){
             Gate::define(strtolower($permission->name), function ($user) use ($permission) {
                 return $user->hasRole($permission->roles);

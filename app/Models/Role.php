@@ -29,7 +29,7 @@ class Role extends Model
      */
     public function givePermissionTo(Permission $permission)
     {
-        return $this->permissions()->save($permission);
+        return $this->permissions()->syncWithoutDetaching($permission);
     }
 
 
