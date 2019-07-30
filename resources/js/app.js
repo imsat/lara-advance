@@ -30,7 +30,6 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 const app = new Vue({
     el: '#app',
     mounted(){
-        console.log()
         Echo.channel('userBanned')
             .listen('UserBannedEvent', (e) => {
                 console.log(e)

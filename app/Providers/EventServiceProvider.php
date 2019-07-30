@@ -25,6 +25,9 @@ class EventServiceProvider extends ServiceProvider
            'App\Listeners\EmailBanNotification',
 //            'App\listeners\CancelSubscription' //multiple listener cab be triggered.
         ],
+        'App\Events\UserCreatedEvent' => [
+           'App\Listeners\UserCreatedListeners',
+        ],
     ];
 
     /**

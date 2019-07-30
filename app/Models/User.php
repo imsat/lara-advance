@@ -2,16 +2,31 @@
 
 namespace App\Models;
 
+use App\Events\UserCreatedEvent;
 use Carbon\Carbon;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
-class User extends Authenticatable
+class User extends Authenticatable  //implements MustVerifyEmail
 {
     use Notifiable;
+
+    protected $dispatchesEvents = [
+        'created' => UserCreatedEvent::class,
+    ];
+
+//    public static function boot()
+//    {
+//        parent::boot();
+//
+//        User::created(function ($user) {
+//            event(new UserCreatedEvent($user));
+//        });
+//    }
 
     /**
      * The attributes that are mass assignable.
@@ -19,13 +34,17 @@ class User extends Authenticatable
      * @var array
      */
     protected $guarded = [];
+
+    public static function generateVerificationCode(){
+        return Str::random(40);
+    }
     /**
      * The attributes that should be hidden for arrays.
      *
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token', 'verification_token'
     ];
 
     /**
@@ -123,7 +142,6 @@ class User extends Authenticatable
     {
         return date('d/m/Y', strtotime($value));
     }
-
 
 
 }

@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Events\UserRegistrationSuccessfulEvent;
 use App\Http\Requests\UserRequest;
+use App\Mail\VerifyEmail;
 use App\Models\Role;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
@@ -36,6 +39,7 @@ class UserController extends Controller
 //          if(Gate::denies('user-access')){
 //            abort(403, 'Sorry, not sorry.');
 //        }
+
         $users = User::with('roles')->latest()->get();
         return view('user.user-index', compact('users'));
     }
@@ -61,14 +65,33 @@ class UserController extends Controller
     public function store(UserRequest $request)
     {
         abort_unless(Gate::allows('user-create'), 403);
-        $user = User::create([
-            'first_name' => $request['first_name'],
-            'last_name' => $request['last_name'],
-            'email' => $request['email'],
-            'password' => bcrypt($request['password']),
-        ]);
+//        $user = User::create([
+//            'first_name' => $request['first_name'],
+//            'last_name' => $request['last_name'],
+//            'email' => $request['email'],
+//            'password' => bcrypt($request['password']),
+//            'verification_token' => User::generateVerificationCode(),
+//        ]);
+
+        $user = new User();
+        $user->first_name = $request['first_name'];
+        $user->last_name = $request['last_name'];
+        $user->email = $request['email'];
+        $user->password = bcrypt($request['password']);
+        $user->verification_token = User::generateVerificationCode();
+        $user->save();
+
         $user->roles()->attach($request['role_id']);
+
         return redirect('/users')->with('success', 'New user created successfully.');
+    }
+
+    public function verify($token){
+        $user = User::where('verification_token', $token)->firstOrFail();
+        $user->email_verified_at = Carbon::now();
+        $user->verification_token = null;
+        $user->save();
+        return redirect('/home')->with('success', 'Email verified successfully.');
     }
 
     /**
