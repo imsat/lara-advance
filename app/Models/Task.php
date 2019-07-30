@@ -2,12 +2,17 @@
 
 namespace App\Models;
 
+use App\Jobs\NewTasktNotification;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Task extends Model
 {
     protected $guarded = [];
+
+//    protected $dispatchesEvents = [
+//        'created' =>  NewTasktNotification::class(),
+//    ];
 
     public function users()
     {

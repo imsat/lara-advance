@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\NewTasktNotification;
+use App\Jobs\NewTasktNotificationJob;
+use App\Mail\NewTaskEmail;
 use App\Models\Task;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class TaskController extends Controller
 {
@@ -47,7 +51,14 @@ class TaskController extends Controller
         $task = Task::create($data);
 
         if($request->has('users')){
-            $task->assignTask($request->users);
+            $users = $request->users;
+            $task->assignTask($users);
+
+            foreach ($users as $u){
+                $user =  User::findOrFail($u);
+                NewTasktNotificationJob::dispatch($user, $task);
+//                Mail::to($user)->send(new NewTaskEmail($user, $task));
+            }
         }
 
         return redirect('/tasks')->with('success', 'New task created successfully.');
