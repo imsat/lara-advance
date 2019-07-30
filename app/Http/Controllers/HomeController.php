@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\WelcomeAgain;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
 {
@@ -23,6 +25,9 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $user = auth()->user();
+        Mail::to($user)->send(new WelcomeAgain($user));
         return view('home.home');
+
     }
 }

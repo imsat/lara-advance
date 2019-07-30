@@ -76,9 +76,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
-//        abort_unless(Gate::allows('user-show'), 403);
+        abort_unless(Gate::allows('user-show'), 403);
+        return view('user.user-show', compact('user'));
     }
 
     /**

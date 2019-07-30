@@ -48,7 +48,7 @@
                             </thead>
                             <tbody>
                             @php($i = 1)
-                            @foreach($posts as $post)
+                            @forelse($posts as $post)
                                 <tr>
                                     <td>{{$i++}}</td>
                                     <td>{{$post->title}}</td>
@@ -64,7 +64,9 @@
                                         {{--{{Form::close()}}--}}
                                     </td>
                                 </tr>
-                            @endforeach
+                                @empty
+                                    <p class="text-center">No post yet</p>
+                                @endforelse
                             </tbody>
                         {{--</tfoot>--}}
                             {{--<tr>--}}

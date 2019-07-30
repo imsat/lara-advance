@@ -47,7 +47,7 @@
                             </thead>
                             <tbody>
                             @php($i = 1)
-                            @foreach($users as $user)
+                            @forelse($users as $user)
                                 <tr>
                                     <td>{{$i++}}</td>
                                     {{--<td>{{$user->fullName}}</td>--}}
@@ -61,6 +61,9 @@
                                     </td>
                                     <td>{{$user->created_at}}</td>
                                     <td>
+                                        @can('user-show')
+                                        <a href="{{route('users.show', $user->id)}}" class="btn btn-sm btn-info"><i class="fa fa-search-plus"></i></a>
+                                        @endcan
                                         @can('user-update')
                                         <a href="{{route('users.edit', $user->id)}}" class="btn btn-sm btn-success"><i class="fa fa-edit"></i></a>
                                         @endcan
@@ -71,7 +74,9 @@
                                         @endcan
                                     </td>
                                 </tr>
-                            @endforeach
+                            @empty
+                                <p class="text-center">No User yet</p>
+                            @endforelse
                             </tbody>
                             <tr>
                                 <th>No</th>
