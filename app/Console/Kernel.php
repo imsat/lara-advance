@@ -24,8 +24,16 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+
+
+//        $schedule->command('laravel:clear-history')->mondays()emailOutputTo();  //did not work because 1st i have to save it first
+//        $schedule->command('laravel:clear-history')->mondays()->sendOutputTo('path/to/file')->emailOutputTo();
+//        $schedule->command('laravel:daily-report')->daily('23:55');
         // $schedule->command('inspire')
         //          ->hourly();
+
+        //php artisan inspire
+//        $schedule->exec("touch foo.txt")->everyTenMinutes();
     }
 
     /**

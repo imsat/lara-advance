@@ -18,6 +18,13 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        'App\Events\MusicEvent' => [
+           ' App\Listeners\MusicEventListener'
+        ],
+        'App\Events\UserBannedEvent' => [
+           'App\Listeners\EmailBanNotification',
+//            'App\listeners\CancelSubscription' //multiple listener cab be triggered.
+        ],
     ];
 
     /**

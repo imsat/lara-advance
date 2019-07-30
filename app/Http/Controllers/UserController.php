@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\UserRegistrationSuccessfulEvent;
 use App\Http\Requests\UserRequest;
 use App\Models\Role;
 use App\Models\User;

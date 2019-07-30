@@ -34,7 +34,7 @@
 <!-- ./wrapper -->
 
 <!-- REQUIRED SCRIPTS -->
-
 @include('includes.scripts')
+
 </body>
 </html>
