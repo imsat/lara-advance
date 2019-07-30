@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Task;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
@@ -14,7 +15,8 @@ class TaskController extends Controller
      */
     public function index()
     {
-        //
+        $tasks = Task::with('users')->latest('deadline_at')->get();
+        return view('task.task-index', compact('tasks'));
     }
 
     /**
@@ -24,7 +26,8 @@ class TaskController extends Controller
      */
     public function create()
     {
-        //
+        $users = User::latest()->get();
+        return view('task.task-create', compact('users'));
     }
 
     /**
@@ -35,7 +38,21 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+           'name' => 'required|string',
+           'deadline_at' => 'required'
+        ]);
+
+        $data = $request->except('users');
+        $task = Task::create($data);
+
+        if($request->has('users')){
+            $task->assignTask($request->users);
+        }
+
+        return redirect('/tasks')->with('success', 'New task created successfully.');
+
+
     }
 
     /**
@@ -80,6 +97,7 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
-        //
+        $task->delete();
+        return redirect('/tasks')->with('success', 'Tasks deleted successfully.');
     }
 }

@@ -120,6 +120,11 @@ class User extends Authenticatable  //implements MustVerifyEmail
         return $this->id == $related->user_id;
     }
 
+    public function tasks()
+    {
+        return $this->belongsToMany('App\Models\Task');
+    }
+
 
     /**
      * Get the user's full name.

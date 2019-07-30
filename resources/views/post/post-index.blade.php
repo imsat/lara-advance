@@ -29,9 +29,9 @@
                     <div class="card-header">
                         <h3 class="card-title float-left">All Posts
                         </h3>
-{{--                        @if(Auth::user()->hasRole('admin'))--}}
+                        @can('post-create'))
                         <a href="{{route('posts.create')}}" class="btn btn-primary float-right btn-sm"> <i class="fa fa-plus"></i> Add New</a>
-                            {{--@endif--}}
+                        @endcan
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">

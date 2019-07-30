@@ -17,3 +17,4 @@ Route::resource('/permissions', 'PermissionController');
 Route::get('/post/publish', 'PostController@publishPost')->name('posts.publish');
 Route::get('/post/unpublish', 'PostController@unpublishPost')->name('posts.unpublish');
 Route::resource('/posts', 'PostController');
+Route::resource('/tasks', 'TaskController');
