@@ -11,6 +11,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -64,22 +65,32 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
-        abort_unless(Gate::allows('user-create'), 403);
-//        $user = User::create([
-//            'first_name' => $request['first_name'],
-//            'last_name' => $request['last_name'],
-//            'email' => $request['email'],
-//            'password' => bcrypt($request['password']),
-//            'verification_token' => User::generateVerificationCode(),
-//        ]);
 
-        $user = new User();
-        $user->first_name = $request['first_name'];
-        $user->last_name = $request['last_name'];
-        $user->email = $request['email'];
-        $user->password = bcrypt($request['password']);
-        $user->verification_token = User::generateVerificationCode();
-        $user->save();
+        abort_unless(Gate::allows('user-create'), 403);
+
+
+
+        if($request->avatar){
+//           $request->avatar->store('avatars');
+
+            $uploadedAvatar = $request->avatar;
+            $userFullName = $request->first_name.' '.$request->last_name;
+
+            $fileName = Str::slug($userFullName) . '.' . $uploadedAvatar->getClientOriginalExtension();
+
+
+            $uploadedAvatar->storePubliclyAs('public',  $fileName);
+
+        }
+
+        $user = User::create([
+            'first_name' => $request['first_name'],
+            'last_name' => $request['last_name'],
+            'email' => $request['email'],
+            'avatar' => $fileName,
+            'password' => bcrypt($request['password']),
+            'verification_token' => User::generateVerificationCode(),
+        ]);
 
         $user->roles()->attach($request['role_id']);
 
@@ -141,6 +152,10 @@ class UserController extends Controller
             'first_name',
             'email',
         ]));
+
+        if(count($request->avatar)){
+
+        }
 
         $roles = $request->role_id;
 

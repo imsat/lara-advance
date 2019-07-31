@@ -32,7 +32,7 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                        {{Form::open(['route' => 'users.store', 'method' => 'POST'])}}
+                        {{Form::open(['route' => 'users.store', 'method' => 'POST', 'enctype' => 'multipart/form-data' ])}}
                             <!-- text input -->
                             <div class="form-group">
                                 <label>First Name</label>
@@ -65,6 +65,10 @@
                                     {{--@endforeach--}}
                                 {{--</select>--}}
                             {{--</div>--}}
+                            <div class="form-group">
+                                <label>Avatar</label>
+                                <input type="file" name="avatar" accept="image/*" class="form-control">
+                            </div>
                             <div class="form-group">
                                 <label class="control-label">Roles </label>
                                 <div class="form-group">

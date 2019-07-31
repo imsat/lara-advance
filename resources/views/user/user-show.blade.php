@@ -53,6 +53,10 @@
                                 <th>Full Name: </th>
                                 <td>{{$user->fullName}}</td>
                             </tr>
+                            <tr>
+                                <th>User Avatar: </th>
+                                <td><img src="{{asset('storage/'.$user->avatar)}}" class="img-thumbnail" alt="" ></td>
+                            </tr>
                         </table>
                     </div>
                     <!-- /.card-body -->
