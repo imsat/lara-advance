@@ -19,3 +19,8 @@ Route::get('/post/unpublish', 'PostController@unpublishPost')->name('posts.unpub
 Route::resource('/posts', 'PostController');
 Route::resource('/tasks', 'TaskController');
 Route::resource('/charts', 'ChartController');
+
+Route::get('/locale/{locale}', function ($locale) {
+     Session::put('locale', $locale);
+    return redirect()->back()->with('success', 'Language changed');
+})->name('locale');

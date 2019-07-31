@@ -19,7 +19,7 @@
                     <a href="{{route('home')}}" class="nav-link ">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
-                            Dashboard
+                            @lang('home.dashboard')
                         </p>
                     </a>
                 </li>
@@ -27,7 +27,7 @@
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-users"></i>
                         <p>
-                            User Management
+                            @lang('home.user_management')
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
@@ -35,19 +35,19 @@
                         <li class="nav-item">
                             <a href="{{route('permissions.index')}}" class="nav-link ">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Permission</p>
+                                <p>@lang('home.permission')</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{route('roles.index')}}" class="nav-link ">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Role</p>
+                                <p>@lang('home.role')</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{route('users.index')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>User</p>
+                                <p>@lang('home.user')</p>
                             </a>
                         </li>
                     </ul>
@@ -57,7 +57,7 @@
                     <a href="{{route('posts.index')}}" class="nav-link ">
                         <i class="nav-icon fas fa-tablet"></i>
                         <p>
-                            Post
+                            @lang('home.post')
                         </p>
                     </a>
                 </li>
@@ -67,7 +67,7 @@
                     <a href="{{route('posts.publish')}}" class="nav-link ">
                         <i class="nav-icon fas fa-table"></i>
                         <p>
-                            Published Post
+                            @lang('home.publish_post')
                         </p>
                     </a>
                 </li>
@@ -77,7 +77,7 @@
                     <a href="{{route('posts.unpublish')}}" class="nav-link ">
                         <i class="nav-icon fas fa-tablet-alt"></i>
                         <p>
-                            Unpublished Post
+                            @lang('home.unpublish_post')
                         </p>
                     </a>
                 </li>
@@ -86,7 +86,7 @@
                     <a href="{{route('tasks.index')}}" class="nav-link ">
                         <i class="nav-icon fas fa-tasks"></i>
                         <p>
-                            Tasks
+                            @lang('home.tasks')
                         </p>
                     </a>
                 </li>
@@ -94,7 +94,7 @@
                     <a href="{{route('charts.index')}}" class="nav-link ">
                         <i class="nav-icon fas fa-chart-pie"></i>
                         <p>
-                            Charts
+                            @lang('home.charts')
                         </p>
                     </a>
                 </li>

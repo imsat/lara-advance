@@ -10,8 +10,9 @@
 <link rel="stylesheet" href="{{asset('/')}}admin-lte-3/plugins/toastr/toastr.min.css">
 <!-- Theme style -->
 <link rel="stylesheet" href="{{asset('/')}}admin-lte-3/dist/css/adminlte.min.css">
+{{--Flag Icon--}}
+<link rel="stylesheet" href="{{asset('css/flag-icon.min.css')}}">
 <!-- Google Font: Source Sans Pro -->
-
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
 

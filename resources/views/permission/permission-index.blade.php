@@ -1,6 +1,6 @@
 @extends('master')
 @section('title')
-    Permission
+    @lang('home.permission')
 @endsection
 @section('content')
     <!-- Content Header (Page header) -->
@@ -8,12 +8,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Permission</h1>
+                    <h1>@lang('home.permission')</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
-                        <li class="breadcrumb-item active">Permissions</li>
+                        <li class="breadcrumb-item active">@lang('home.permission')</li>
                     </ol>
                 </div>
             </div>

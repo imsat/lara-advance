@@ -10,6 +10,34 @@
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
         <!-- Messages Dropdown Menu -->
+        {{--<li class="nav-item dropdown">--}}
+            {{--<a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown09" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--}}
+                {{--<i class="fas fa-fl"> </i> English</a>--}}
+            {{--<div class="dropdown-menu" aria-labelledby="dropdown09">--}}
+                {{--<a class="dropdown-item" href="#fr"><span class="flag-icon flag-icon-fr"> </span>  French</a>--}}
+                {{--<a class="dropdown-item" href="#it"><span class="flag-icon flag-icon-it"> </span>  Bangla</a>--}}
+            {{--</div>--}}
+        {{--</li>--}}
+        <li class="nav-item dropdown">
+            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                @if(Config::get('app.locale') == 'bn')
+                    <img src="{{asset('flags/bd.svg')}}" alt="" class="" style="max-width: 30%"> Bangla
+                @else
+                    <img src="{{asset('flags/us.svg')}}" alt="" class="" style="max-width: 30%"> English
+                @endif
+                <span class="caret"></span>
+            </a>
+
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{{route('locale', 'en')}}">
+                    <img src="{{asset('flags/us.svg')}}" alt="" class="img-thumbnail" style="max-width: 30%"> English
+                </a>
+                <a class="dropdown-item" href="{{route('locale', 'bn')}}">
+                    <img src="{{asset('flags/bd.svg')}}" alt="" class="img-thumbnail" style="max-width: 30%"> Bangla
+                </a>
+            </div>
+        </li>
+
         <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#">
                 <i class="far fa-comments"></i>
@@ -103,7 +131,8 @@
                 <a class="dropdown-item" href="{{ route('logout') }}"
                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                    {{ __('Logout') }}
+                    {{ __('home.logout') }}
+{{--                    {{ @lang('home.logout')}}--}}
                 </a>
 
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
