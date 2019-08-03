@@ -24,3 +24,6 @@ Route::get('/locale/{locale}', function ($locale) {
      Session::put('locale', $locale);
     return redirect()->back()->with('success', 'Language changed');
 })->name('locale');
+
+
+Route::resource('file','FileController',['only' => ['index', 'store']]);

@@ -98,6 +98,14 @@
                         </p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{route('file.index')}}" class="nav-link ">
+                        <i class="nav-icon fas fa-upload"></i>
+                        <p>
+                            @lang('home.file')
+                        </p>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

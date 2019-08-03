@@ -18,4 +18,5 @@ return [
     'tasks' => 'Tasks',
     'charts' => 'Charts',
     'logout' => 'Logout',
+    'file' => 'File',
 ];
