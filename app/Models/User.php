@@ -35,7 +35,13 @@ class User extends Authenticatable  //implements MustVerifyEmail
      */
     protected $guarded = [];
 
-    public static function generateVerificationCode(){
+    public function scopePunched()
+    {
+        return $this->attendances()->latest()->where('punched_in', Carbon::today())->get();
+    }
+
+    public static function generateVerificationCode()
+    {
         return Str::random(40);
     }
     /**
@@ -123,6 +129,11 @@ class User extends Authenticatable  //implements MustVerifyEmail
     public function tasks()
     {
         return $this->belongsToMany('App\Models\Task');
+    }
+
+    public function attendances()
+    {
+        return $this->hasMany('App\Models\Attendance');
     }
 
 

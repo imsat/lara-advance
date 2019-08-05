@@ -19,6 +19,19 @@
             {{--</div>--}}
         {{--</li>--}}
         <li class="nav-item dropdown">
+{{--            {{auth()->user()->attendances->latest()->pluck('id')}}--}}
+{{--{{auth()->user()->attendances->count() > 0 ||}}--}}
+            @if(auth()->user()->attendances->first()->punched_out )
+                <a class="nav-link btn btn-sm  btn-outline-danger" data-toggle="modal" data-target="#punchOutModal">
+                    Punch Out
+                </a>
+            @else
+                <a class="nav-link btn btn-sm  btn-outline-success" data-toggle="modal" data-target="#punchInModal">
+                    Punch In
+                </a>
+            @endif
+        </li>
+        <li class="nav-item dropdown">
             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 @if(Config::get('app.locale') == 'bn')
                     <img src="{{asset('flags/bd.svg')}}" alt="" class="" style="max-width: 30%"> Bangla
@@ -141,5 +154,8 @@
             </div>
         </li>
     </ul>
+
+
+
 </nav>
 <!-- /.navbar -->

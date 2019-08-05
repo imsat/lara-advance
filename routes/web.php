@@ -27,3 +27,4 @@ Route::get('/locale/{locale}', function ($locale) {
 
 
 Route::resource('file','FileController',['only' => ['index', 'store']]);
+Route::resource('user.attendance','AttendanceController',['only' => ['store', 'update']]);
