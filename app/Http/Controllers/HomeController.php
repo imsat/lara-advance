@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Events\UserBannedEvent;
 use App\Jobs\CompileJob;
 use App\Mail\WelcomeAgain;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
@@ -27,7 +29,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $user = auth()->user();
 //        Mail::to($user)->send(new WelcomeAgain($user));
 //        event('UserBannedEvent', $user); //not working as 5.1 version
 //        event(new UserBannedEvent($user));

@@ -16,4 +16,6 @@ class Attendance extends Model
     {
         return $this->belongsTo('App\Models\User');
     }
+
+
 }

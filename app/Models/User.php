@@ -35,10 +35,10 @@ class User extends Authenticatable  //implements MustVerifyEmail
      */
     protected $guarded = [];
 
-    public function scopePunched()
-    {
-        return $this->attendances()->latest()->where('punched_in', Carbon::today())->get();
-    }
+//    public function scopePunched($query)
+//    {
+//        $query->where('created_at', Carbon::today());
+//    }
 
     public static function generateVerificationCode()
     {

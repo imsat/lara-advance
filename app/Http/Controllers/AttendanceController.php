@@ -6,6 +6,7 @@ use App\Models\Attendance;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AttendanceController extends Controller
 {
@@ -42,6 +43,7 @@ class AttendanceController extends Controller
             'punched_in' => now(),
             'punched_in_note' => $request->punched_in_note,
         ]);
+
         return redirect()->back()->with('success', 'Successfully punched in');
     }
 

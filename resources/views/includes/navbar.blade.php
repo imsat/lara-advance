@@ -19,9 +19,10 @@
             {{--</div>--}}
         {{--</li>--}}
         <li class="nav-item dropdown">
-{{--            {{auth()->user()->attendances->latest()->pluck('id')}}--}}
+            {{--{{auth()->user()->attendances->latest()->pluck('id')}}--}}
 {{--{{auth()->user()->attendances->count() > 0 ||}}--}}
-            @if(auth()->user()->attendances->first()->punched_out )
+            @if(!empty($userAttendance))
+
                 <a class="nav-link btn btn-sm  btn-outline-danger" data-toggle="modal" data-target="#punchOutModal">
                     Punch Out
                 </a>
