@@ -106,6 +106,14 @@
                         </p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{route('document.index')}}" class="nav-link ">
+                        <i class="nav-icon fas fa-book"></i>
+                        <p>
+                            @lang('home.document')
+                        </p>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

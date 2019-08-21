@@ -19,4 +19,5 @@ return [
     'charts' => 'Charts',
     'logout' => 'Logout',
     'file' => 'File',
+    'document' => 'Document',
 ];
