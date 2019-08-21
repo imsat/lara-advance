@@ -1,5 +1,7 @@
 <?php
 
+//Auth::loginUsingId(3); //changes quick auth id
+
 Route::get('/', function () {
 //    return view('welcome');
     return redirect('home');

@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Jobs\SendVerificrionEmail;
 use App\Mail\VerifyEmail;
 use App\Models\Attendance;
+use App\Models\Document;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -43,6 +44,15 @@ class AppServiceProvider extends ServiceProvider
                                                     ->first()
             );
         });
+
+        /**
+         * Document catch updating event
+         *
+         * @return void
+         */
+//        Document::updating(function ($document) {
+//            $document->adjustments()->attach(Auth::id());
+//        });
 
     }
 }

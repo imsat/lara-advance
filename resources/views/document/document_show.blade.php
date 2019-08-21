@@ -28,7 +28,8 @@
                 <!-- /.card -->
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title float-left">View Document
+                        <h3 class="card-title">View Document
+                            <a href="{{route('document.edit', $document->id)}}" class="btn btn-outline-info float-right btn-sm" title="Edit">Update</a>
                         </h3>
                     </div>
                     <!-- /.card-header -->
@@ -44,7 +45,15 @@
                             </tr>
                         </table>
                         <hr>
-                        //relationship
+                        <ul class="list-group">
+                            @foreach($document->adjustments as $user)
+                                <li class="list-group-item">
+                                    <span class="text-warning">{{$user->fullName}}</span>
+                                    made a modification on
+                                    <span class="text-success">{{$user->pivot->updated_at->diffForHumans()}}</span>
+                                </li>
+                            @endforeach
+                        </ul>
                     </div>
                     <!-- /.card-body -->
                 </div>

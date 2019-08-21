@@ -52,7 +52,7 @@
                                     <td>{{$document->body}}</td>
                                     <td>
                                         <a href="{{route('document.show', $document->id)}}" class="btn btn-sm btn-info" title="View"><i class="fa fa-search-plus"></i></a>
-                                        <a href="#" class="btn btn-sm btn-success" title="Edit"><i class="fa fa-edit"></i></a>
+                                        <a href="{{route('document.edit', $document->id)}}" class="btn btn-sm btn-success" title="Edit"><i class="fa fa-edit"></i></a>
                                     </td>
                                 </tr>
                             @endforeach

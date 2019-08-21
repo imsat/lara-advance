@@ -25,7 +25,9 @@ class DocumentController extends Controller
      */
     public function create()
     {
-        //
+        $document = new Document();
+//        dd(isset($document) ? 'ase' : 'nai');
+        return view('document.create_or_update', compact('document'));
     }
 
     /**
@@ -36,7 +38,8 @@ class DocumentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Document::create($request->all());
+        return redirect('/document');
     }
 
     /**
@@ -58,7 +61,7 @@ class DocumentController extends Controller
      */
     public function edit(Document $document)
     {
-        //
+        return view('document.create_or_update', compact('document'));
     }
 
     /**
@@ -70,7 +73,8 @@ class DocumentController extends Controller
      */
     public function update(Request $request, Document $document)
     {
-        //
+        $document->update($request->all());
+        return redirect('/document');
     }
 
     /**
