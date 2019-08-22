@@ -14,7 +14,10 @@ class Document extends Model
         parent::boot();
 
         static::updating(function ($document) {
-            $document->adjustments()->attach(Auth::id());
+            $document->adjustments()->attach(Auth::id(), [
+                'before' => $document->fresh()->tojson(),
+                'after'  => json_encode($document->getDirty())
+            ]);
         });
     }
 
@@ -23,6 +26,7 @@ class Document extends Model
         // follow table like user_document
         return $this->belongsToMany(User::class, 'adjustments')
             ->withTimestamps()
+            ->withPivot(['before', 'after'])
 //            ->latest(); //order by created_at desc use user created at
             ->latest('pivot_updated_at'); //order by created_at desc use user pivot created at
     }

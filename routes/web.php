@@ -1,6 +1,6 @@
 <?php
 
-//Auth::loginUsingId(3); //changes quick auth id
+Auth::loginUsingId(1); //changes quick auth id
 
 Route::get('/', function () {
 //    return view('welcome');
