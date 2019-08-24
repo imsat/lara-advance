@@ -66,6 +66,7 @@ class DatabaseSeeder extends Seeder
             });
 
         factory('App\Models\Document', 3)->create();
+        factory('App\Models\Lesson', 500)->create();
 
 
     }

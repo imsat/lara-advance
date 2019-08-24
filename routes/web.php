@@ -1,6 +1,6 @@
 <?php
 
-Auth::loginUsingId(1); //changes quick auth id
+//Auth::loginUsingId(1); //changes quick auth id
 
 Route::get('/', function () {
 //    return view('welcome');
@@ -30,9 +30,9 @@ Route::get('/locale/{locale}', function ($locale) {
 
 Route::resource('file','FileController',['only' => ['index', 'store']]);
 Route::resource('user.attendance','AttendanceController',['only' => ['store', 'update']]);
-//Route::get('/document/{document}', 'DocumentController@show')->name('document.show');
 
 Route::group(['middleware' => ['web', 'auth']], function () {
 
     Route::resource('/document', 'DocumentController');
+    Route::resource('/lesson', 'LessonController');
 });
