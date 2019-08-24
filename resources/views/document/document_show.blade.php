@@ -50,7 +50,18 @@
                                 <li class="list-group-item">
                                     <span class="text-warning">{{$user->fullName}}</span>
                                     made a modification on
-                                    <span class="text-success">{{$user->pivot->updated_at->diffForHumans()}}</span>
+                                    <span class="text-info">{{$user->pivot->updated_at->diffForHumans()}}</span>
+                                    <p class="text-bold h6">Before:
+                                        @foreach(json_decode($user->pivot->before, true) as $key => $value)
+                                            <span class="text-muted text-capitalize">{{ $key }}</span> -
+                                            <span class="text-danger">{{ ltrim($value,',') }}</span>,
+                                        @endforeach
+                                    </p>
+                                    <p class="text-bold h6">After:
+                                        @foreach(json_decode($user->pivot->after, true) as $key => $value)
+                                            <span class="text-muted text-capitalize">{{ $key }}</span> - <span class="text-success">{{ $value }}</span>,
+                                        @endforeach
+                                    </p>
                                 </li>
                             @endforeach
                         </ul>

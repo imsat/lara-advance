@@ -45,7 +45,7 @@
                         </div>
                         <div class="form-group">
                             <label>Body</label>
-                            <textarea name="body" id="description" rows="3" class="form-control" placeholder="Enter Body">{!! $document->title !!}</textarea>
+                            <textarea name="body" id="description" rows="3" class="form-control" placeholder="Enter Body">{!! $document->body !!}</textarea>
 
                             <span class="text-danger ">{{$errors->has('body') ? $errors->first('body') : ''}}</span>
                         </div>

@@ -65,6 +65,8 @@ class DatabaseSeeder extends Seeder
                 $user->roles()->attach($roles);
             });
 
+        factory('App\Models\Document', 3)->create();
+
 
     }
 }
