@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(RoleSeeder::class);
         $this->call(PermissionSeeder::class);
+        $this->call(SettingSeeder::class);
         factory('App\Models\Category', 10)->create();
 
         //for Admin

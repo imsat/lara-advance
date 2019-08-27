@@ -35,4 +35,5 @@ Route::group(['middleware' => ['web', 'auth']], function () {
 
     Route::resource('/document', 'DocumentController');
     Route::resource('/lesson', 'LessonController');
+    Route::resource('/settings', 'SettingController');
 });

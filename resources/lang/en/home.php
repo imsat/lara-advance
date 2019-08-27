@@ -20,4 +20,5 @@ return [
     'logout' => 'Logout',
     'file' => 'File',
     'document' => 'Document',
+    'setting' => 'Setting',
 ];
