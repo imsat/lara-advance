@@ -17,6 +17,8 @@ class CreateAdjustmentsTable extends Migration
             $table->bigIncrements('id');
             $table->integer('user_id')->unsigned();
             $table->integer('document_id')->unsigned();
+            $table->longText('before'); // ['title' => 'original', 'body' => 'something new']
+            $table->longText('after'); // ['title' => 'after', 'body' => 'something changed']
             $table->timestamps();
 
 //            $table->primary(['user_id', 'document_id']); this is not use case because single user can make multiple adjustment on document

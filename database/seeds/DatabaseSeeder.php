@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(RoleSeeder::class);
         $this->call(PermissionSeeder::class);
+        $this->call(SettingSeeder::class);
         factory('App\Models\Category', 10)->create();
 
         //for Admin
@@ -64,6 +65,9 @@ class DatabaseSeeder extends Seeder
                 $roles = Role::where('id', 2)->orWhere('id', 3)->get()->random(mt_rand(1,2))->pluck('id');
                 $user->roles()->attach($roles);
             });
+
+        factory('App\Models\Document', 3)->create();
+        factory('App\Models\Lesson', 500)->create();
 
 
     }

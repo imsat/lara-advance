@@ -6,9 +6,12 @@ use App\Jobs\SendVerificrionEmail;
 use App\Mail\VerifyEmail;
 use App\Models\Attendance;
 use App\Models\Document;
+use App\Models\Setting;
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
@@ -53,6 +56,14 @@ class AppServiceProvider extends ServiceProvider
 //        Document::updating(function ($document) {
 //            $document->adjustments()->attach(Auth::id());
 //        });
+
+
+        $settings = Setting::all();
+        foreach ($settings as $setting){
+            Config::set('uiu.'.$setting->name, $setting->value);
+        }
+//        Artisan::call('config:cache');
+//        dd(config('uiu.date_format'));
 
     }
 }

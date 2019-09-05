@@ -19,5 +19,6 @@ return [
     'charts' => 'চার্ট',
     'logout' => 'প্রস্থান',
     'file' => 'ফাইল',
-    'document' => 'Document',
+    'document' => 'দলিল',
+    'setting' => 'স্থাপন',
 ];

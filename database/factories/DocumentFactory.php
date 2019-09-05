@@ -11,3 +11,4 @@ $factory->define(Document::class, function (Faker $faker) {
         'body' => $faker->paragraph
     ];
 });
+
