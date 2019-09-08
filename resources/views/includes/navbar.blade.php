@@ -18,23 +18,22 @@
                 {{--<a class="dropdown-item" href="#it"><span class="flag-icon flag-icon-it"> </span>  Bangla</a>--}}
             {{--</div>--}}
         {{--</li>--}}
-        <li class="nav-item dropdown">
-            {{--{{auth()->user()->attendances->latest()->pluck('id')}}--}}
-{{--{{auth()->user()->attendances->count() > 0 ||}}--}}
-            @if(!empty($userAttendance))
+        <punch-in-out-button :user="{{ Auth::user() }}"></punch-in-out-button>
+        {{--<li class="nav-item dropdown">--}}
+            {{--@if(!empty($userAttendance))--}}
 
-                <a class="nav-link btn btn-sm  btn-outline-danger" data-toggle="modal" data-target="#punchOutModal">
-                    Punch Out
-                </a>
-            @else
-                <a class="nav-link btn btn-sm  btn-outline-success" data-toggle="modal" data-target="#punchInModal">
-                    Punch In
-                </a>
-            @endif
-        </li>
+                {{--<a class="nav-link btn btn-sm  btn-outline-danger" data-toggle="modal" data-target="#punchOutModal">--}}
+                    {{--Punch Out--}}
+                {{--</a>--}}
+            {{--@else--}}
+                {{--<a class="nav-link btn btn-sm  btn-outline-success" data-toggle="modal" data-target="#punchInModal">--}}
+                    {{--Punch In--}}
+                {{--</a>--}}
+            {{--@endif--}}
+        {{--</li>--}}
         <li class="nav-item dropdown">
             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                @if(Config::get('app.locale') == 'bn')
+                @if(config('app.locale') == 'bn')
                     <img src="{{asset('flags/bd.svg')}}" alt="" class="" style="max-width: 30%"> Bangla
                 @else
                     <img src="{{asset('flags/us.svg')}}" alt="" class="" style="max-width: 30%"> English
@@ -155,8 +154,5 @@
             </div>
         </li>
     </ul>
-
-
-
 </nav>
 <!-- /.navbar -->

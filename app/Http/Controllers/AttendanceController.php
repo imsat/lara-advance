@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Attendance;
 use App\Models\User;
 use Carbon\Carbon;
+use http\Env\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class AttendanceController extends Controller
 {
@@ -38,13 +40,7 @@ class AttendanceController extends Controller
      */
     public function store(Request $request, User $user)
     {
-        Attendance::create([
-            'user_id' => $user->id,
-            'punched_in' => now(),
-            'punched_in_note' => $request->punched_in_note,
-        ]);
-
-        return redirect()->back()->with('success', 'Successfully punched in');
+        //
     }
 
     /**
@@ -113,5 +109,52 @@ class AttendanceController extends Controller
     public function destroy(Attendance $attendance)
     {
         //
+    }
+    public function punchStatus(User $user)
+    {
+//        $attendance = $user->attendances()
+//                        ->whereDate('created_at', Carbon::today())
+//                        ->whereNull('punch_out')
+//                        ->first();
+        $attendance = Attendance::latest()
+                        ->where('user_id', $user->id)
+                        ->whereDate('created_at', Carbon::today())
+                        ->whereNull('punch_out')
+                        ->first();
+        return $attendance;
+    }
+
+    public function punchIn(Request $request, User $user)
+    {
+        Attendance::create([
+            'user_id' => $user->id,
+            'punch_in' => now(),
+            'in_note' => $request->punched_in_note,
+        ]);
+
+        return response()->json(['message' => 'Successfully punched in', 'code' => '201'], 201);
+    }
+    public function punchOut(Request $request, Attendance $attendance, User $user)
+    {
+        $this->checkUser($attendance, $user);
+        $punchIn = $attendance->punch_in;
+        $punchOut = now();
+        $workingTime = Carbon::parse($punchOut->diffInSeconds($punchIn));
+
+        $attendance::update([
+            'user_id' => $user->id,
+            'punch_out' => $punchOut,
+            'out_note' => $request->out_note,
+            'working_time' => $workingTime,
+        ]);
+
+        return response()->json(['message' => 'Successfully punched in', 'code' => '201'], 201);
+    }
+
+    public function checkUser($attendance, $user)
+    {
+        if ($user->id != $attendance->user_id) {
+            throw new HttpException(422, 'The specified user is not the actual user');
+        }
     }
 }
