@@ -25,9 +25,7 @@
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
        @yield('content')
-        <div class="modal fade" id="add-edit-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <punch-in-out-modal :user="{{Auth::user()}}"></punch-in-out-modal>
-        </div>
+
 
         <div class="modal fade" id="punchInModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">

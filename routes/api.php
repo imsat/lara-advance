@@ -18,7 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
-Route::get('attendance/punch/in/{user}','AttendanceController@punchIn')->name('punch.in');
-Route::get('attendance/punch/out/{user}','AttendanceController@punchOut')->name('punch.out');
+Route::post('attendance/punch/in/{user}','AttendanceController@punchIn')->name('punch.in');
+Route::post('attendance/punch/out/{attendance}','AttendanceController@punchOut')->name('punch.out');
 Route::get('attendance/status/{user}','AttendanceController@punchStatus')->name('punch.status');
 Route::apiResource('attendance','AttendanceController');

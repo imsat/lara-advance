@@ -112,10 +112,6 @@ class AttendanceController extends Controller
     }
     public function punchStatus(User $user)
     {
-//        $attendance = $user->attendances()
-//                        ->whereDate('created_at', Carbon::today())
-//                        ->whereNull('punch_out')
-//                        ->first();
         $attendance = Attendance::latest()
                         ->where('user_id', $user->id)
                         ->whereDate('created_at', Carbon::today())
@@ -129,26 +125,27 @@ class AttendanceController extends Controller
         Attendance::create([
             'user_id' => $user->id,
             'punch_in' => now(),
-            'in_note' => $request->punched_in_note,
+            'punch_in_ip' => $request->ip(),
+            'in_note' => $request->in_note,
         ]);
 
         return response()->json(['message' => 'Successfully punched in', 'code' => '201'], 201);
     }
-    public function punchOut(Request $request, Attendance $attendance, User $user)
+    public function punchOut(Request $request, Attendance $attendance)
     {
-        $this->checkUser($attendance, $user);
+//        $this->checkUser($attendance, auth()->user()->id);
         $punchIn = $attendance->punch_in;
         $punchOut = now();
-        $workingTime = Carbon::parse($punchOut->diffInSeconds($punchIn));
+        $workingTime = $punchOut->diffInSeconds($punchIn);
 
-        $attendance::update([
-            'user_id' => $user->id,
+        $attendance->update([
             'punch_out' => $punchOut,
+            'punch_out_ip' => $request->ip(),
             'out_note' => $request->out_note,
             'working_time' => $workingTime,
         ]);
 
-        return response()->json(['message' => 'Successfully punched in', 'code' => '201'], 201);
+        return response()->json(['message' => 'Successfully punched out', 'code' => '201'], 201);
     }
 
     public function checkUser($attendance, $user)
