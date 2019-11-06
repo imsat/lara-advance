@@ -36,29 +36,29 @@ class HomeController extends Controller
 //            ->groupBy(DB::raw('DAY(created_at)'))
 //            ->get();
 
-        $a = Attendance::select('id', 'working_time', 'created_at')
-        ->get()
-        ->groupBy(function($date) {
-            return Carbon::parse($date->created_at)->format('d'); // grouping by years
-            //return Carbon::parse($date->created_at)->format('m'); // grouping by months
-        });
-
-        $lists = array();
-        $today = (int)date('d');
-
-        for ($i = 0; $i <= $today; $i++) {
-            $lists[$i] = 0;
-        }
-//        $a = Attendance::
-//             select(DB::raw('sum(working_time) as working_time'))
-//            ->groupBy(DB::raw('DAY(created_at)') )
-//            ->get();
-        
-        foreach ($a as $key => $b){
-            $lists[$key] = $b;
-        }
-
-        dd($lists);
+//        $a = Attendance::select('id', 'working_time', 'created_at')
+//        ->get()s
+//        ->groupBy(function($date) {
+//            return Carbon::parse($date->created_at)->format('d'); // grouping by years
+//            //return Carbon::parse($date->created_at)->format('m'); // grouping by months
+//        });
+//
+//        $lists = array();
+//        $today = (int)date('d');
+//
+//        for ($i = 0; $i <= $today; $i++) {
+//            $lists[$i] = 0;
+//        }
+////        $a = Attendance::
+////             select(DB::raw('sum(working_time) as working_time'))
+////            ->groupBy(DB::raw('DAY(created_at)') )
+////            ->get();
+//
+//        foreach ($a as $key => $b){
+//            $lists[$key] = $b;
+//        }
+//
+//        dd($lists);
 
 //        Mail::to($user)->send(new WelcomeAgain($user));
 //        event('UserBannedEvent', $user); //not working as 5.1 version
