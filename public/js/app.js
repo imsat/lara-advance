@@ -1938,7 +1938,7 @@ __webpack_require__.r(__webpack_exports__);
 
       this.is_loading = true;
       axios.get(route).then(function (res) {
-        console.log(res);
+        // console.log(res);
         _this.is_loading = false;
         _this.attendance = res.data;
       })["catch"](function (err) {

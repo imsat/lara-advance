@@ -175,7 +175,7 @@
                 this.is_loading = true;
                 axios.get(route)
                     .then(res => {
-                        console.log(res);
+                        // console.log(res);
                         this.is_loading = false;
                         this.attendance = res.data;
                     })
