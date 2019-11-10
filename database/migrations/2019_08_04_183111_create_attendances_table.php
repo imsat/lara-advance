@@ -16,11 +16,13 @@ class CreateAttendancesTable extends Migration
         Schema::create('attendances', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('user_id');
-            $table->timestamp('punched_in');
-            $table->string('punched_in_note')->nullable();
-            $table->timestamp('punched_out')->nullable();
-            $table->string('punched_out_note')->nullable();
-            $table->string('working_time')->nullable();
+            $table->timestamp('punch_in');
+            $table->string('punch_in_ip')->nullable();
+            $table->string('in_note')->nullable();
+            $table->timestamp('punch_out')->nullable();
+            $table->string('punch_out_ip')->nullable();
+            $table->string('out_note')->nullable();
+            $table->bigInteger('working_time')->nullable();
             $table->timestamps();
         });
     }

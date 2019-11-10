@@ -62,6 +62,9 @@ class User extends Authenticatable  //implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
+    protected $appends = [
+        'full_name'
+    ];
 
     /**
      * Many-To-Many Relationship Method for accessing the User->roles
@@ -158,6 +161,8 @@ class User extends Authenticatable  //implements MustVerifyEmail
     {
         return date('d/m/Y', strtotime($value));
     }
+
+
 
 
 }

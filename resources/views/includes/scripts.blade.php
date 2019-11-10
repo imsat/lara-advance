@@ -44,41 +44,56 @@
 </script>
 
 @yield('script')
-<script type="text/javascript" charset="utf-8">
+<script  type="text/javascript" charset="utf-8">
+    /** add active class and stay opened when selected */
+    var url = window.location;
 
-     $(function(){
-         var current = location.pathname;
-         $('nav li a').each(function(){
-             var $this = $(this);
-             // if the current path is like this link, make it active
+    // for sidebar menu entirely but not cover treeview
+    $('ul.nav-sidebar a').filter(function() {
+        return this.href == url;
+    }).addClass('active');
 
-             // if($this.attr('href').indexOf(current) !== -1){
-             //     $this.addClass('active');
-             // }
-
-
-             //for treeview
-
-             $('.has-treeview').removeClass('menu-open');
-             $('[href$="'+current+'"]').closest('li.has-treeview').addClass("menu-open");
-             $this.closest('li.menu-open > a').addClass("active");
-         });
-
-        //
-        // var url = location.pathname;
-        // $('nav li.has-treeview a').each(function(){
-        //     var $this = $(this);
-        //     // if the current path is like this link, make it active
-        //     $this.closest('li.has-treeview > a').addClass("active");
-        // });
-
-        // var url = location.pathname;
-        // $('nav li.menu-open a').each(function(){
-        //     var $this = $(this);
-        //     $this.closest('li.menu-open > a').addClass("active");
-        // });
-
-
-    });
+    // for treeview
+    $('ul.nav-treeview a').filter(function() {
+        return this.href == url;
+    }).parentsUntil(".nav-sidebar > .nav-treeview").addClass('menu-open').prev('a').addClass('active');
 
 </script>
+{{--<script type="text/javascript" charset="utf-8">--}}
+
+     {{--$(function(){--}}
+         {{--var current = location.pathname;--}}
+         {{--$('nav li a').each(function(){--}}
+             {{--var $this = $(this);--}}
+             {{--// if the current path is like this link, make it active--}}
+
+             {{--// if($this.attr('href').indexOf(current) !== -1){--}}
+             {{--//     $this.addClass('active');--}}
+             {{--// }--}}
+
+
+             {{--//for treeview--}}
+
+             {{--$('.has-treeview').removeClass('menu-open');--}}
+             {{--$('[href$="'+current+'"]').closest('li.has-treeview').addClass("menu-open");--}}
+             {{--$this.closest('li.menu-open > a').addClass("active");--}}
+         {{--});--}}
+
+        {{--//--}}
+        {{--// var url = location.pathname;--}}
+        {{--// $('nav li.has-treeview a').each(function(){--}}
+        {{--//     var $this = $(this);--}}
+        {{--//     // if the current path is like this link, make it active--}}
+        {{--//     $this.closest('li.has-treeview > a').addClass("active");--}}
+        {{--// });--}}
+
+        {{--// var url = location.pathname;--}}
+        {{--// $('nav li.menu-open a').each(function(){--}}
+        {{--//     var $this = $(this);--}}
+        {{--//     $this.closest('li.menu-open > a').addClass("active");--}}
+        {{--// });--}}
+
+
+    {{--});--}}
+
+{{--</script>--}}
