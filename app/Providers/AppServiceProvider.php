@@ -58,10 +58,22 @@ class AppServiceProvider extends ServiceProvider
 //        });
 
 
-        $settings = Setting::all();
-        foreach ($settings as $setting){
+// ======================================================================
+
+        
+        if(Schema::hasTable('settings')){
+            $settings = Setting::all();
+            foreach ($settings as $setting){
             Config::set('uiu.'.$setting->name, $setting->value);
+            }
         }
+
+       
+
+// ======================================================================
+        
+
+
 //        Artisan::call('config:cache');
 //        dd(config('uiu.date_format'));
 
