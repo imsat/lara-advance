@@ -15,9 +15,11 @@ class User extends Authenticatable  //implements MustVerifyEmail
 {
     use Notifiable;
 
-    protected $dispatchesEvents = [
-        'created' => UserCreatedEvent::class,
-    ];
+    /*!!!!Commented for seeding problem block!!!!*/
+//    protected $dispatchesEvents = [
+//        'created' => UserCreatedEvent::class,
+//    ];
+
 
 //    public static function boot()
 //    {
