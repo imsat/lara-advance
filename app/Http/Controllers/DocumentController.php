@@ -50,6 +50,7 @@ class DocumentController extends Controller
      */
     public function show(Document $document)
     {
+//        $document->load('adjustments');
         return view('document.document_show', compact('document'));
     }
 
