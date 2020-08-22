@@ -6,6 +6,7 @@ use App\Models\Permission;
 use App\Models\Post;
 use App\Policies\PostPolicy;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -54,7 +55,11 @@ class AuthServiceProvider extends ServiceProvider
 
     protected function getPermissions()
     {
-        return Permission::with('roles')->get();
+        if (Schema::hasTable('roles')) {
+            return Permission::with('roles')->get();
+        } else {
+            return [];
+        }
     }
 
 }
